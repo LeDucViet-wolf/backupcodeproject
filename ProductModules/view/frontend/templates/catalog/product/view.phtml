@@ -1,0 +1,31 @@
+<?php
+/* @var \Gssi\ProductModules\Block\Catalog\Product\View $block */
+$helper = $this->helper('\Gssi\ProductModules\Helper\Data');
+$product = $block->getProduct();
+?>
+<?php if ($product->getModulesProductEnable() == 1) : ?>
+    <div class="field">
+        <label class="label"
+        <span><?= __("Mounting Products") ?></span>
+        </label>
+        <div class="control" style="width: 80%">
+            <select name="mounting_products"
+                    id="attribute<?= $helper->getAttributeId($product, 'modules_product_enable') ?>"
+                    class="mounting_products">
+                <option value=""><?= __('Choose an Option...') ?></option>
+            </select>
+        </div>
+    </div>
+    <script>
+        window.colorCountAttributeId = "<?= $helper->getAttributeId($product, 'color_count') ?>";
+        window.moduleAttributeId = "<?= $helper->getAttributeId($product, 'module') ?>";
+        window.singleColor = '<?= $helper->getColor($product, 'single_color') ?>';
+        window.dualColor = '<?= $helper->getColor($product, 'dual_color') ?>';
+        window.triColor = '<?= $helper->getColor($product, 'tri_color') ?>';
+    </script>
+<?php endif; ?>
+<?php if ($block->getSelectedOptions()) : ?>
+    <script>
+        window.selectedOptions = '<?= $block->getSelectedOptions() ?>'
+    </script>
+<?php endif; ?>
